@@ -1,6 +1,11 @@
 from application import db
 from werkzeug.security import generate_password_hash, check_password_hash
 
+users_groups = db.Table('groups',
+                        db.Column('user_id', db.String(36), db.ForeignKey('user.id'), primary_key=True),
+                        db.Column('group_id', db.String(36), db.ForeignKey('group.id'), primary_key=True)
+                        )
+
 
 class User(db.Model):
     __tablename__ = 'user'
@@ -22,6 +27,11 @@ class User(db.Model):
     token_expired = db.Column(db.DateTime,
                               unique=False,
                               nullable=True)
+
+    groups = db.relationship('Group', secondary=users_groups, lazy='subquery',
+                             backref=db.backref('users', lazy=True))
+    grades = db.relationship('Grade', backref='user', lazy=True)
+    votes = db.relationship('Vote', backref='user', lazy=True)
 
     def __init__(self, **kwargs):
         super(User, self).__init__(**kwargs)
