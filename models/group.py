@@ -1,7 +1,7 @@
 from application import db
 from datetime import time
 
-groups_restaurants = db.Table('restaurants',
+groups_restaurants = db.Table('groups_restaurants',
                               db.Column('group_id', db.String(36), db.ForeignKey('group.id'), primary_key=True),
                               db.Column('restaurant_id', db.String(36), db.ForeignKey('restaurant.id'),
                                         primary_key=True)

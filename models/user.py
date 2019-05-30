@@ -1,7 +1,7 @@
 from application import db
 from werkzeug.security import generate_password_hash, check_password_hash
 
-users_groups = db.Table('groups',
+users_groups = db.Table('users_groups',
                         db.Column('user_id', db.String(36), db.ForeignKey('user.id'), primary_key=True),
                         db.Column('group_id', db.String(36), db.ForeignKey('group.id'), primary_key=True)
                         )
