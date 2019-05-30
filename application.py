@@ -2,10 +2,10 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from resources.user import user_bp
+from config import MariaDBConfig
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:decider@@localhost/test?charset=utf8'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config.from_object(MariaDBConfig)
 
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
