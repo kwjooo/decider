@@ -1,7 +1,6 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
-from resources.user import user_bp
 from config import MariaDBConfig
 
 app = Flask(__name__)
@@ -19,7 +18,11 @@ from models.vote import Vote
 from models.category_preference import CategoryPreference
 from models.today_restaurant import TodayRestaurant
 
+from resources.user import user_bp
+from resources.group import group_bp
+
 app.register_blueprint(user_bp, url_prefix='/api/v1')
+app.register_blueprint(group_bp, url_prefix='/api/v1')
 
 
 def create_app():
