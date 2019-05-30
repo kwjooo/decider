@@ -19,7 +19,8 @@ from models.vote import Vote
 from models.category_preference import CategoryPreference
 from models.today_restaurant import TodayRestaurant
 
-app.register_blueprint(user_bp)
+app.register_blueprint(user_bp, url_prefix='/api/v1')
+
 
 def create_app():
     return app
