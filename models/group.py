@@ -1,5 +1,4 @@
 from application import db
-from datetime import time
 from constants import LUNCH_TIME, DINNER_TIME
 
 groups_restaurants = db.Table('groups_restaurants',
