@@ -21,10 +21,5 @@ from models.today_restaurant import TodayRestaurant
 
 app.register_blueprint(user_bp)
 
-# @app.route("/")
-# def hello():
-#     return "<h1>Hello decider</h1>"
-
-
 def create_app():
     return app
