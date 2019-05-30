@@ -11,9 +11,15 @@ USERS = {
 }
 
 
-def abort_if_todo_doesnt_exist(todo_id):
-    if todo_id not in USERS:
-        abort(404, message="Todo {} doesn't exist".format(todo_id))
+def abort_if_todo_doesnt_exist(user_id):
+    if user_id not in USERS:
+        abort(404, message="User {} doesn't exist".format(user_id))
+
+
+class User(Resource):
+    def get(self, user_id):
+        abort_if_todo_doesnt_exist(user_id)
+        return USERS[user_id]
 
 
 class UserList(Resource):
@@ -22,3 +28,4 @@ class UserList(Resource):
 
 
 api.add_resource(UserList, '/users')
+api.add_resource(User, '/users/<user_id>')
