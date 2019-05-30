@@ -1,5 +1,6 @@
 from application import db
 from datetime import time
+from constants import LUNCH_TIME, DINNER_TIME
 
 groups_restaurants = db.Table('groups_restaurants',
                               db.Column('group_id', db.String(36), db.ForeignKey('group.id'), primary_key=True),
@@ -22,11 +23,11 @@ class Group(db.Model):
     lunch_time = db.Column(db.Time,
                            unique=False,
                            nullable=False,
-                           default=time(12))
+                           default=LUNCH_TIME)
     dinner_time = db.Column(db.Time,
                             unique=False,
                             nullable=False,
-                            default=time(18))
+                            default=DINNER_TIME)
 
     restaurants = db.relationship('Restaurant', secondary=groups_restaurants, lazy='subquery',
                                   backref=db.backref('groups', lazy=True))
